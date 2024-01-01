@@ -1,5 +1,6 @@
 package org.acme.security.jwt;
 
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -19,6 +20,7 @@ public class GenerateToken {
                 .upn("jdoe@quarkus.io")
                 .groups(new HashSet<>(Arrays.asList("User", "Admin")))
                 .claim(Claims.birthdate.name(), "2001-07-13")
+                .expiresAt(Instant.now().plusSeconds(3600))
                 .sign();
         System.out.println(token);
     }
